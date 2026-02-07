@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=DM+Sans:wght@400;500;600&display=swap');
+
+:root {
+  --ocean-deep: #0a1628;
+  --ocean-mid: #1a2f4a;
+  --ocean-light: #2a4a6a;
+  --coral-pink: #FF6B6B;
+  --teal-glow: #4ECDC4;
+  --sand-yellow: #FFE66D;
+  --bubble-white: rgba(255, 255, 255, 0.9);
+}
+
+.font-silkscreen {
+  font-family: 'Silkscreen', cursive;
+}
+
+.font-dm {
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* Animated ocean background */
+.ocean-bg {
+  background: linear-gradient(180deg,
+    #0a1628 0%,
+    #0d1f3c 30%,
+    #1a3a5c 60%,
+    #0f2847 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.ocean-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(ellipse at 20% 80%, rgba(78, 205, 196, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(255, 107, 107, 0.08) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 50%, rgba(255, 230, 109, 0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Floating bubbles animation */
+@keyframes float-up {
+  0% {
+    transform: translateY(100vh) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+    transform: translateY(90vh) scale(1);
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-10vh) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%,
+    rgba(255, 255, 255, 0.3),
+    rgba(78, 205, 196, 0.1)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: float-up linear infinite;
+  pointer-events: none;
+}
+
+/* Speech bubble styling */
+.speech-bubble {
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(240, 248, 255, 0.9) 100%
+  );
+  border-radius: 16px 16px 16px 4px;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 8px;
+  width: 16px;
+  height: 16px;
+  background: inherit;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+/* Crab styling */
+@keyframes scuttle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+.crab {
+  animation: scuttle 0.3s ease-in-out infinite;
+  transition: left 0.5s ease-out, top 0.5s ease-out;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+}
+
+.crab:hover {
+  animation-duration: 0.15s;
+}
+
+/* Message fade animation */
+@keyframes bubble-appear {
+  0% {
+    transform: scale(0.8) translateY(10px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bubble-fade {
+  0% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.message-bubble {
+  animation: bubble-appear 0.3s ease-out, bubble-fade 30s linear forwards;
+}
+
+/* Input glow effect */
+.input-glow {
+  box-shadow:
+    0 0 0 1px rgba(78, 205, 196, 0.3),
+    0 0 20px rgba(78, 205, 196, 0.1);
+  transition: all 0.3s ease;
+}
+
+.input-glow:focus {
+  box-shadow:
+    0 0 0 2px rgba(78, 205, 196, 0.6),
+    0 0 30px rgba(78, 205, 196, 0.3);
+}
+
+/* Neon text effect */
+.neon-text {
+  text-shadow:
+    0 0 10px currentColor,
+    0 0 20px currentColor,
+    0 0 40px currentColor;
+}
+
+/* City buildings silhouette */
+.city-silhouette {
+  background: linear-gradient(to bottom, transparent 50%, #0a1628 100%);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 200'%3E%3Cpath fill='black' d='M0,200 L0,150 L50,150 L50,120 L80,120 L80,150 L120,150 L120,80 L150,80 L150,100 L180,100 L180,60 L200,60 L200,100 L220,100 L220,130 L280,130 L280,90 L320,90 L320,140 L380,140 L380,70 L400,50 L420,70 L420,140 L500,140 L500,100 L540,100 L540,120 L600,120 L600,60 L630,60 L630,90 L660,90 L660,50 L680,50 L680,90 L720,90 L720,110 L780,110 L780,70 L820,70 L820,130 L880,130 L880,80 L920,80 L920,150 L960,150 L960,100 L1000,100 L1000,200 Z'/%3E%3C/svg%3E");
+  mask-size: cover;
+  mask-repeat: no-repeat;
+  mask-position: bottom;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(26, 47, 74, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(78, 205, 196, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(78, 205, 196, 0.7);
+}
